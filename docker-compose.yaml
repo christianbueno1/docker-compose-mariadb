@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+    # web:
+        # image: "apache:${PHP_VERSION}"
+        # restart: 'always'
+        # depends_on:
+        #   - mariadb
+        # restart: 'always'
+        # ports:
+        #   - '8080:80'
+        # links:
+            # ports:
+            #   - '8080:80'
+        #   - mariadb
+  mariadb:
+    image: "mariadb:10.5.10-focal"
+    restart: 'always'
+    ports:
+        - '192.168.122.178:49152:3306'
+    volumes: 
+      - db-var-lib-mysql:/var/lib/mysql
+    #   - db-data/logs:${MARIADB_LOG_DIR
+    #   - db-data/docker-mariadb-conf:/etc/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    #   MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #   MYSQL_USER: ${MYSQL_USER}
+    #   MYSQL_PASSWORD: example
+volumes:
+    db-var-lib-mysql:
